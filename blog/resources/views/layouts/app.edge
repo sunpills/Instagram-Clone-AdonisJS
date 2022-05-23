@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Adonisgram</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+    />
+    <link rel="stylesheet" href="../../resources/./css/linhas.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/84733a4c30.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav class="w-full bg-white shadow-md border flex justify-center px-4 py-2">
+      <div class="w-1/2 flex justify-between">
+        <h1 class="text-xl font-semibold">
+          <a href="/"><img class="inline-flex w-1/2 mt-3 relative inline-block" src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png"></a>
+        </h1>
+        @if(auth.isAuthenticated && auth.user.email_verified_at === null)
+        <form action="/verify-email" method="post">
+            <input type="submit" value="Reenviar e-mail de verificação" class="px-2 py-1 border rounded">
+        </form>
+        @endif
+        <div>
+          @if(auth.isAuthenticated)
+<div class="relative inline-block text-left">
+  <div id="dropdown" class="cursor-pointer outline-none focus-none">
+      <img src="{{auth.user.avatar}}" class="h-8 w-8 rounded-full border" alt="profile" />
+  </div>
+    <div id="dropdown-items" class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+      <div class="py-1" role="none">
+        <a href="/{{auth.user.username}}" class="text-gray-700 block px-4 py-2 text-sm border-b" role="menuitem" tabindex="-1" id="menu-item-0">Perfil</a>
+        <form action="/logout" method="post">
+          <button type="submit" class="text-gray-700 block w-full text-left px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-3">Sair</button>
+        </form>
+      </div>
+  </div>
+  </div>
+</div>
+          @endif
+        </div>
+      </div>
+    </nav>
+    <div class="bg-gray-100 min-h-screen flex justify-center">
+        <div class="w-full md:w-1/2">
+            @section('content')
+            @endsection
+        </div>
+    </div>
+    <script>
+      const dropdown = document.getElementById('dropdown');
+      const item = document.getElementById('dropdown-items');
+      dropdown.addEventListener('click',() => {
+        if(item.classList.contains('hidden')) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+  </script>
+  </body>
+</html>
