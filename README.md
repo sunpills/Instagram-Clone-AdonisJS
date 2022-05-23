@@ -21,7 +21,9 @@ Nesse app é possível criar uma conta, fazer o login, receber um e-mail de ativ
 ### Algumas prévias abaixo: 
 
 Página de signup:
+
 ![](https://i.ibb.co/qdjjtqD/signup.jpg)
 
 Página de login: 
+
 ![](https://i.ibb.co/wdFXGG8/login.jpg)
